@@ -1,0 +1,138 @@
+@import "mixin";
+
+img {
+  max-width: 100%;
+  vertical-align: bottom; //img要素につけると上下の余白をなくす。
+} 
+
+.cover-slide {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: ''; //擬似要素には必ず値（空文字でも可）を設定する。
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:#eaebe6;
+    opacity: 0;
+  }
+    &.inview{
+      &::after{
+        opacity: 1;
+
+        @include animation($name: kf-cover-slide,
+        $duration: 1.6s,
+        $timing-function: ease-in-out,
+        );
+      }
+    }
+  }
+
+.img-zoom  {
+  opacity: 0;
+  .inview & {
+    opacity: 1;
+    transition: transform 0.3s ease;
+    @include animation($name: kf-img-zoom,$duration: 1.6s,
+    $timing-function: ease-in-out,
+    $fill-mode: none);
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+
+@keyframes kf-img-zoom {
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+  }
+  50.1%{
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+@keyframes kf-cover-slide {
+  0% {
+    left: 0;
+    right: 100%;//右から100%の位置（右に押し潰されているイメージ）
+  }
+  50% {
+    left: 0;
+    right: 0;
+  }
+  100% {
+    left: 100%;//左から100%の位置（左に押し潰されているイメージ）
+    right: 0;
+  }
+}
+
+// @keyframes kf-cover-slide {
+//   0% {
+//     transform-origin: left;
+//     transform: scaleX(0);
+//   }
+//   50% {
+//     transform-origin: left;
+//     transform: scaleX(1);
+//   }
+//   50.1% {
+//     transform-origin: right;
+//     transform: scaleX(1);
+//   }
+//   100% {
+//     transform-origin: right;
+//     transform: scaleX(0);
+//   }
+// }
+
+.hover-darken {
+  &::before{
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+    pointer-events: none; //マウスのポイントが無視される。（その下のホバーが有効になる。）
+    @include animation($name: kf-img-show,
+        $duration: 1.6s,
+        $timing-function: ease-in-out,
+        );
+  }
+    &:hover::before{
+      background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.bg-img-zoom {
+  background-image: url(images/image-1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  @extend .img-zoom; //.img-zoomクラスの設定を読み込むことができる。
+}
+
+.img-bg50 {
+  position: relative;
+  &::before {
+    display: block;
+    content:"";
+    padding-top: 50%;
+  }
+}

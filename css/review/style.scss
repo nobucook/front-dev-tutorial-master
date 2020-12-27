@@ -1,0 +1,45 @@
+@import "mixin";
+
+body {
+margin:0;
+}
+
+.container {
+    height: 100vh; //画面サイズを基準に100%
+    position: relative;
+    background-color: teal;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    & .animate-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        // display: inline-block;
+        color: white;
+        & .char {
+            display: inline-block;
+            @include animation(
+                $name: kf-chars,
+                $duration: 0.5s,
+                $timing-function: cubic-bezier(0.39, 1.57, 0.58, 1)
+            );
+            @for $i from 1 through 9 {
+            &:nth-child(#{$i}){
+                animation-delay: 0.04s * $i;
+            }
+            }
+        }
+    }
+}
+
+@keyframes kf-chars {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

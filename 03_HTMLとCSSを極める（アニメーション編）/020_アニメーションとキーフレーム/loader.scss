@@ -1,0 +1,36 @@
+$cBlack: black;
+
+body {
+  text-align: center;
+}
+
+@mixin animation() {
+  
+}
+
+.rect {
+  display: inline-block;
+  background-color: $cBlack;
+  width: 100px;
+  height: 100px;
+  animation: sk-bouncedelay 1.4s;
+  // animation-delay: 3s;
+  animation-iteration-count: 3;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 50% {
+    transform: scale(0);
+    background-color: $cBlack;
+  }
+
+  // 50% {
+  //   transform: scale(2);
+  // }
+  
+  100% {
+    transform: scale(1);
+    background-color: green;
+  }
+}

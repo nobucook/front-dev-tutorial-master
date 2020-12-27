@@ -1,1 +1,36 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+a {
+  color: orange;
+}
+
+a:visited {
+  color: turquoise;
+}
+
+a:hover {
+  color: red;
+}
+
+a:focus {
+  color: purple;
+}
+
+a:active {
+  color: white;
+}
+
+div span {
+  color: olive;
+}
+
+div span:nth-of-type(even) {
+  color: purple;
+}
+
+div span:first-of-type {
+  color: red;
+}
+
+div span:not(.cls) {
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */
