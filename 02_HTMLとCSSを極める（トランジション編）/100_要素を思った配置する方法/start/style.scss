@@ -2,26 +2,37 @@
   background-color: rgb(81, 218, 218);
   height: 600px;
   width: 100%;
+  // text-align: right;
+  // letter-spacing: -6px;
+  // flex-wrap: wrap;
 }
 
 .child {
   background-color: orange;
   width: 100px;
-  height: 100px;
+  // height: 100px;
   font-weight: 600;
   flex-grow: 1;
   flex-basis: 300px;
+  display: inline-block;
 }
 .child.v1 {
+  // flex-basis: 300px;
   flex-shrink: 0;
+  // width: 100px;
+  // height: 100px;
 }
 .child.v2 {
   background-color: palevioletred;
-  flex-grow: 2;
+  // flex-grow: 2;
+  // width: 200px;
+  // height: 200px;
 }
 .child.v3 {
   background-color: rebeccapurple;
-  flex-grow: 3;
+  // flex-grow: 3;
+  // width: 100px;
+  // height: 100px;
 }
 
 /**
@@ -56,8 +67,9 @@
 //   transform: translate(-50%, -50%);
 // }
 
-// .parent {
-//   display: flex;
-//   flex-direction: row-reverse;
-//   justify-content: center;
-// }
+.parent {
+  display: flex;
+  // flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}

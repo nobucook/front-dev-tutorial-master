@@ -19,4 +19,43 @@
 .try .btn.cubic {
   /** スタイルをここに追加。*/
 }
+
+.try .btn.cubic span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  line-height: 48px;
+  text-align: center;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transform-origin: center center -25px;
+          transform-origin: center center -25px;
+}
+
+.try .btn.cubic span .hovering {
+  background-color: black;
+  color: white;
+  -webkit-transform: rotateX(90deg);
+          transform: rotateX(90deg);
+}
+
+.try .btn.cubic span .default {
+  background-color: white;
+  color: black;
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+
+.try .btn.cubic span:hover .hovering {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+
+.try .btn.cubic span:hover .default {
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
+}
 /*# sourceMappingURL=try.css.map */

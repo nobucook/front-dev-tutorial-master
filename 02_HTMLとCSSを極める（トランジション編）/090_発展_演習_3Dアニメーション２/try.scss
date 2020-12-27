@@ -14,9 +14,44 @@ $cBlack: black;
     height: 50px;
     margin: 0 auto;
     cursor: pointer;
-
+    
     &.cubic {
       /** スタイルをここに追加。*/
+      & span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid $cBlack;
+        line-height: 48px;
+        text-align: center;
+        transition: all 0.3s;
+        transform-origin: center center -25px;
+        
+        & .hovering {
+          background-color: $cBlack;
+          color: $cWhite;
+          transform: rotateX(90deg);
+        }
+        
+        & .default {
+          background-color: $cWhite;
+          color: $cBlack;
+          transform: rotateX(0deg);
+        }
+        
+        &:hover { 
+          & .hovering {
+            transform: rotateX(0deg);
+          }
+          
+          & .default {
+            transform: rotateX(-90deg);
+          }
+        }
+      }
     }
   }
 }
+  

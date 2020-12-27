@@ -1,0 +1,114 @@
+$cBlack: black;
+
+@mixin animation(
+  $name,
+  $duration: 1.4s,
+  $iteration-count: infinite
+) {
+  animation: {
+    name: $name;
+    duration: $duration;
+    iteration-count: $iteration-count;
+  }
+}
+
+body {
+  text-align: center;
+}
+
+.rect {
+  transform-style: preserve-3d;
+  perspective: 100px;
+  text-align: center;
+  div {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: $cBlack;
+    margin: 100px auto;
+    transform-origin:  center center;
+    @include animation(
+      $name: rect-spin
+    )
+  }
+}
+
+@keyframes rect-spin {
+  0% {
+    transform: rotateX(0) rotateX(0)
+  }
+  50% {
+    transform: rotateX(-180deg) rotateY(0) ; 
+  }
+  100% {
+    transform: rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
+.dubble-circle {
+  text-align: center;
+  position: relative;
+  margin: 100px auto;
+  display: inline-block;
+  div {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.6;
+    @include animation(
+      $name: dubble-circle
+    );
+    &:nth-child(1){
+      animation-delay: -0.7s;
+    }
+  }
+}
+
+@keyframes dubble-circle {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.rect_spinner {
+  display: inline-block;
+  text-align: center;
+  width: 60px;
+  height: 40px;
+  div {
+    display: inline-block;
+    height: 100%;
+    width: 6px;
+    background-color: #333;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-in-out;
+    @include animation (
+      $name: sk_delay_spinner
+    )
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: -1.2s + $i *0.1;
+      }
+    }
+  }
+}
+
+@keyframes sk_delay_spinner {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1)
+  }
+}
