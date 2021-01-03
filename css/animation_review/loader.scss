@@ -1,0 +1,47 @@
+@mixin animation(
+  $name,
+  $duration: 1.4s,
+  $iteration: infinite
+){
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-iteration-count: $iteration;
+
+}
+
+.three-dot-spinner {
+  text-align: center;
+   & div {
+    display: inline-block;
+    background-color: black;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    @include animation($name: sk-bouncedeley)
+  }
+  & .bounce1 {
+    animation-delay: -3.2s;
+  }
+  & .bounce2 {
+    animation-delay: -1.6s;
+  }
+}
+
+@keyframes sk-bouncedeley {
+  0%{
+    opacity: 0;
+    transform: scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50%{
+    opacity: 0;
+    transform: scale(0);
+  }
+   100%{
+    opacity: 0;
+    transform: scale(0);
+  }
+}
