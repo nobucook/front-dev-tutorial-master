@@ -3,6 +3,7 @@
 Stylesheet: ベーススタイル
 
 ******************************************************************/
+
 body {
   font-family: "Kameron", "Noto Sans JP", sans-serif;
 }
@@ -37,14 +38,15 @@ img {
 .content-width {
   width: 90%;
   margin: 0 auto;
-  max-width: $contentMaxWidth;
+  max-width: $contentMaxWidth; //=>変数にしておく。
 }
 .main-title {
+  display: block;
   @extend .font-lg;
   font-weight: 600;
   margin-bottom: 0;
-  display: block;
 }
+
 .sub-title {
   @extend .font-sm;
   color: $cSubTitle;
@@ -53,8 +55,16 @@ img {
   display: flex;
   flex-direction: column;
 }
+
 .purple {
   color: $cWineRed;
+}
+
+#container {
+  background-color: $cWhite;
+  position: relative;
+  z-index: 10;
+  transition: transform 0.5s, box-shadow 0.5s;
 }
 
 #main-content {
@@ -67,26 +77,19 @@ main {
   z-index: -1;
 }
 
-#container {
-  background-color: $cWhite;
-  position: relative;
-  z-index: 10;
-  transition: transform 0.5s, box-shadow 0.5s;
-}
-
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: $navHeight;
-  background-color: transparent;
+  background-color: transparent; //背景色を透明にする。
+  z-index: 100; //基本的には10単位、100単位での設定するほうがベター
   display: flex;
   align-items: center;
-  z-index: 100;
 
   &.triggered {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9); //白色の透明度0.9。
     box-shadow: 10px 0 25px -10px rgba(0, 0, 0, 0.5);
   }
 
@@ -95,32 +98,38 @@ main {
   }
 
   &__ul {
-    display: flex;
+    @extend .flex;
+    flex-direction: row;
     align-items: center;
-    padding: 0;
+    list-style: none;
     margin: 0;
     list-style: none;
   }
 
   &__li {
     margin-left: 20px;
-
     & > a {
       color: $cBlack;
       text-decoration: none !important;
-      text-transform: uppercase;
+      text-transform: uppercase; //大文字表記に変更される。
     }
   }
 
+  // &__ul {
+  //   padding: 0;
+  //   margin: 0;
+  // }
+
   & .logo {
-    font-size: 38px;
-    justify-content: center;
+    font-size: 38px; //スマホでは少し小さめ
+    justify-content: center; //スマホでは中央揃え
   }
 
   &__inner {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; //上下中央揃え
+    // flex-direction: row;
     @extend .content-width;
   }
 }
@@ -140,7 +149,6 @@ main {
 
   &__title {
     position: relative;
-
     @include p-base($display: none, $width: 100px, $height: 1px, $top: 50%, $left: -120px) {
       background-color: $cBlack;
       transform: translateY(-50%) scaleX(0);
@@ -156,16 +164,14 @@ main {
   &__img {
     height: 300px;
     @extend .mb-sm;
-    transition: box-shadow 1ms linear 0.8s;
-
+    transition: box-shadow 1ms linear 0.8s; //boxshadowを1msかけてliner(一定の速さ)で0.8s遅れてスタートする。
     & > img {
-      position: relative;
-      z-index: -1;
       object-fit: cover;
       width: 100%;
       height: 100%;
+      position: relative;
+      z-index: -1;
     }
-
     &.inview {
       box-shadow: inset 0 0 30px $cBlack;
     }
@@ -176,7 +182,7 @@ main {
 
     &.inview {
       & .travel__title::before {
-        transform: translateY(-50%);
+        transform: translateY(-50%) scale(1);
       }
     }
   }
@@ -185,11 +191,9 @@ main {
 .houses {
   @extend .content-width;
   @extend .mb-lg;
-
   &__inner {
     @extend .flex;
   }
-
   &__title {
     @extend .font-lr;
     @extend .mb-sm;
@@ -204,19 +208,18 @@ main {
 .popular {
   &__inner {
     position: relative;
-    @include p-base($top: 10%, $height: 90%) {
-      background: $cBgGray;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 90%;
+      background-color: $cBgGray;
     }
-    // &::before {
-    //   content: '';
-    //   position: absolute;
-    //   bottom: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   height: 90%;
-    //   background-color: $cBgGray;
-    // }
   }
+
   &__header {
     @extend .content-width;
   }
@@ -227,7 +230,6 @@ main {
     @extend .content-width;
     @extend .pb-sm;
   }
-
   &__title {
     @extend .font-md;
     @extend .mb-sm;
@@ -243,7 +245,6 @@ main {
     height: 150px;
     overflow: hidden;
     margin-bottom: 5px;
-
     & > img {
       object-fit: cover;
       height: 100%;
@@ -251,6 +252,12 @@ main {
     }
   }
 }
+
+// .mobile-menu {
+//   &__btn {
+//     display: block;
+//   }
+// }
 
 .logo {
   font-size: 42px;
@@ -285,7 +292,7 @@ main {
 
   &__li {
     padding: 0;
-    margin: 10px;
+    margin: 10px; //上下左右に10px
 
     & > a {
       color: $cSubTitle;
@@ -293,8 +300,8 @@ main {
   }
 
   & .logo {
-    font-size: 38px;
-    justify-content: center;
+    font-size: 38px; //スマホでは少し小さめ
+    justify-content: center; //スマホでは中央揃え
   }
 }
 
@@ -309,29 +316,25 @@ main {
     color: $cBlack;
     text-decoration: none !important;
     margin: 0 40px;
-    vertical-align: middle;
+    vertical-align: middle; //inline要素を上下中央揃えにする。
     letter-spacing: 2px;
   }
 
   &.left {
-    left: -50px;
-
+    left: -50px; //初期表示は画面外
     &.inview {
       left: 50px;
     }
-
     & .side__inner {
       transform-origin: top left;
       transform: rotate(-90deg);
     }
   }
   &.right {
-    right: -50px;
-
+    right: -50px; //初期表示は画面外
     &.inview {
       right: 50px;
     }
-
     & .side__inner {
       transform-origin: top right;
       transform: rotate(90deg);

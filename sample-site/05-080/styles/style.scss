@@ -1,0 +1,37 @@
+@import "modules/variables";
+@import "modules/mixin";
+@import "modules/appear";
+@import "modules/button";
+@import "modules/hero-slider";
+@import "modules/text-animation";
+@import "modules/image-slide";
+@import "modules/mobile-menu";
+
+@import "breakpoints/base";
+
+//ランドスケープ（スマホを横にした時）
+@media (min-width: 480px) {
+  @import "breakpoints/480up";
+}
+//タブレッドに適用されるスタイル
+@media (min-width: 600px) {
+  @import "breakpoints/600up";
+}
+//タブレットを横にした時or小さいデスクトップ、ノートPC
+@media (min-width: 960px) {
+  @import "breakpoints/960up";
+}
+//通常のPCディスプレイ
+@media (min-width: 1280px) {
+  @import "breakpoints/1280up";
+}
+//retinaディスプレイ(解像度が2倍以上)の時にs適用される。
+//画像をより良いものにしたりする。
+@media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+  @import "breakpoints/2x";
+}
+
+//印刷時用
+@media print {
+  @import "breakpoints/print";
+}
